@@ -1,0 +1,8 @@
+Package: com.cryptic.resub
+Name: resub
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Enter Substrate from an Application. (Primarily used after booting into no-substrate mode)
+Maintainer: Cryptic
+Author: Cryptic
+Section: Utilities
