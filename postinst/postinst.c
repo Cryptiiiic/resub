@@ -2,12 +2,12 @@
 #include <spawn.h>
 #include <sys/stat.h>
 
-static int run_mv(const char *path, const char *cmd)
+static int run_mv(char *path, char *cmd)
 {
-    const char *args[] = {"/bin/mv", cmd, path, NULL};
+    char *args[] = {"/bin/mv", cmd, path, NULL};
     pid_t pid;
     int stat;
-    posix_spawn(&pid, args[0], NULL, NULL, (char **) args, NULL);
+    posix_spawn(&pid, args[0], NULL, NULL, args, NULL);
     waitpid(pid, &stat, 0);
     return stat;
 }

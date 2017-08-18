@@ -5,20 +5,20 @@
 
 static int run_substrate()
 {
-    const char *args[] = {"/etc/rc.d/substrate", NULL};
+    char *args[] = { "/etc/rc.d/substrate",  NULL };
     pid_t pid;
     int stat;
-    posix_spawn(&pid, args[0], NULL, NULL, (char **) args, NULL);
+    posix_spawn(&pid, args[0], NULL, NULL, args, NULL);
     waitpid(pid, &stat, 0);
     return stat;
 }
 
-static int run_respring(const char *path, const char *cmd)
+static int run_respring(char *path, char *cmd)
 {
-    const char *args[] = {"/usr/bin/killall", cmd, path, NULL};
+    char *args[] = {"/usr/bin/killall", cmd, path, NULL};
     pid_t pid;
     int stat;
-    posix_spawn(&pid, args[0], NULL, NULL, (char **) args, NULL);
+    posix_spawn(&pid, args[0], NULL, NULL, args, NULL);
     waitpid(pid, &stat, 0);
     return stat;
 }
