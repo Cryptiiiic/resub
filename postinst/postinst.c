@@ -19,15 +19,14 @@ int main(int argc, char **argv, char **envp)
         return 1;
     }
     
-    chown("/Applications/resub.app/resub", 0, 0);
-    chmod("/Applications/resub.app/resub", 6755);
-    
-    run_mv("/Applications/resub.app/resub1", "/Applications/resub.app/resub");
+    run_mv("/Applications/resub.app/resub-app", "/Applications/resub.app/resub");
     run_mv("/Applications/resub.app/resub", "/Applications/resub.app/re");
-    run_mv("/Applications/resub.app/resub-app", "/Applications/resub.app/resub1");
     
     chown("/Applications/resub.app/resub", 0, 0);
-    chmod("/Applications/resub.app/resub", 0755);
+    chown("/Applications/resub.app/resub-app", 0, 0);
+    
+    chmod("/Applications/resub.app/re", 0755);
+    chmod("/Applications/resub.app/resub-app", 6755);
     
 	return 0;
 }
