@@ -1,9 +1,0 @@
-Package: com.cryptic.resub
-Name: resub
-Architecture: iphoneos-arm
-Description: Enter Substrate from an Application. (Primarily used after booting into no-substrate mode). Stashing is Supported.
-Maintainer: Cryptic
-Author: Cryptic
-Section: Utilities
-Version: 1.2.0
-Installed-Size: 308
