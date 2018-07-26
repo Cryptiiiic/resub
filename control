@@ -1,8 +1,10 @@
 Package: com.cryptic.resub
 Name: resub
-Version: 1.4.1
+Depends: firmware (>= 7.0), firmware (<= 11.4)
+Conflicts: firmware (= 11.0), firmware (= 11.0.1), firmware (= 11.0.2), firmware (= 11.0.3), firmware (= 11.1), firmware (= 11.1.1), firmware (= 11.1.2)
+Version: 1.4.2
 Architecture: iphoneos-arm
-Description: Enter Substrate from an Application. (Primarily used after booting into no-substrate mode). Stashing is Supported.
+Description: Enter Substrate from an Application. (Primarily used after booting into no-substrate mode/with tweaks disabled). Stashing is Supported. Supports iOS 7.0-11.4 except electra1112.
 Maintainer: Cryptic
 Author: Cryptic
 Section: Utilities

@@ -5,22 +5,52 @@
 
 static int run_substrate()
 {
-    char *args[] = { "/etc/rc.d/substrate",  NULL };
-    pid_t pid;
-    int stat;
-    posix_spawn(&pid, args[0], NULL, NULL, args, NULL);
-    waitpid(pid, &stat, 0);
-    return stat;
+    if (access("/usr/bin/cynject", F_OK) == 0)
+    {
+        char *argv[] = { "exec", "/usr/bin/cynject", "1", "/Library/Frameworks/CydiaSubstrate.framework/Libraries/SubstrateLauncher.dylib",  NULL };
+        pid_t pid;
+        int stat;
+        posix_spawn(&pid, "/bin/exec", NULL, NULL, argv, NULL);
+        waitpid(pid, &stat, 0);
+        return stat;
+    }
+    return 0;
 }
 
-static int run_respring(char *path, char *cmd)
+static int run_substitute()
 {
-    char *args[] = {"/usr/bin/killall", cmd, path, NULL};
-    pid_t pid;
-    int stat;
-    posix_spawn(&pid, args[0], NULL, NULL, args, NULL);
-    waitpid(pid, &stat, 0);
-    return stat;
+    if (access("/electra/inject_criticald", F_OK) == 0)
+    {
+        char *argv[] = { "inject_criticald", "1", "/electra/pspawn_payload.dylib",  NULL };
+        pid_t pid;
+        int stat;
+        posix_spawn(&pid, "/electra/inject_criticald", NULL, NULL, argv, NULL);
+        waitpid(pid, &stat, 0);
+        return stat;
+    }
+    return 0;
+}
+
+static int run_respring()
+{
+    if(access("/usr/bin/ldrestart", F_OK) == 0)
+    {
+        char *argv[] = { "ldrestart",  NULL };
+        pid_t pid;
+        int stat;
+        posix_spawn(&pid, "/usr/bin/ldrestart", NULL, NULL, argv, NULL);
+        waitpid(pid, &stat, 0);
+        return stat;
+    }
+    else
+    {
+        char *argv[] = { "killall", "-9", "SpringBoard",  NULL };
+        pid_t pid;
+        int stat;
+        posix_spawn(&pid, "/usr/bin/killall", NULL, NULL, argv, NULL);
+        waitpid(pid, &stat, 0);
+        return stat;
+    }
 }
 
 
@@ -34,7 +64,8 @@ static int run_respring(char *path, char *cmd)
 {
     [super viewDidLoad];
     run_substrate();
-    run_respring("SpringBoard", "-9");
+    run_substitute();
+    run_respring();
 }
 
     @end
